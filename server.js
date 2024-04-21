@@ -21,7 +21,7 @@ app.use((req, res, next) => {
         next();
     }
 });
-
+ 
 
 // Define tus rutas y controladores aquí
 // Rutas para alumnos
