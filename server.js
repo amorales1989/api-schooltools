@@ -8,20 +8,15 @@ const attendanceController = require('./src/controllers/attendanceController')
 const app = express();
 const PORT = process.env.PORT || 3006; // Puerto en el que se ejecutará el servidor
 
-// Configura middleware para manejar solicitudes JSON y CORS
+// Configura middleware para manejar solicitudes JSON
 app.use(express.json());
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*'); // Permitir solicitudes desde cualquier origen
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    // Configurar para manejar solicitudes OPTIONS preflight
-    if (req.method === 'OPTIONS') {
-        res.sendStatus(200);
-    } else {
-        next();
-    }
+    next();
 });
- 
+
 
 // Define tus rutas y controladores aquí
 // Rutas para alumnos
