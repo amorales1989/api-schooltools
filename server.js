@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const alumnsController = require('./src/controllers/alumnsControllers');
 const attendanceController = require('./src/controllers/attendanceController')
+const eventController = require('./src/controllers/eventController')
 
 
 const app = express();
@@ -20,6 +21,11 @@ app.use((req, res, next) => {
 
 // Define tus rutas y controladores aquí
 // Rutas para alumnos
+app.post('/event', eventController.addEvent);
+app.get('/events', eventController.getAllEvents);
+app.get('/event/:id', eventController.getEventById);
+app.put('/event/:id', eventController.updateEventById);
+app.delete('/event/:id', eventController.deleteEventById);
 app.post('/attendance', attendanceController.addAttendance)
 app.get('/attendance', attendanceController.getAllAttendance)
 app.get('/attendance:id', attendanceController.getAttendanceId)
