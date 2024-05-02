@@ -33,16 +33,18 @@ async function getAlumnsWoman(req, res) {
   }
 }
 
-// Controlador para obtener todos los alumnos
+// Controlador para obtener un alumno por su ID
 async function getAlumnById(req, res) {
   try {
-    const alumns = await alumnsService.getAlumnById();
-    res.json(alumns);
+    const alumnId = req.params.alumnId; // Obtén el ID del parámetro de la solicitud
+    const alumn = await alumnsService.getAlumnById(alumnId); // Llama a la función con el ID del alumno
+    res.json(alumn);
   } catch (error) {
-    console.error('Error al obtener los alumnos:', error);
+    console.error('Error al obtener el alumno:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 }
+
 // Controlador para crear un nuevo alumno
 async function createAlumn(req, res) {
   console.log(req.body)

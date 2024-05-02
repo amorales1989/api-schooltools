@@ -29,10 +29,16 @@ async function getAlumnsWoman() {
 }
 
 // Servicio para obtener un alumno por id
-async function getAlumnById() {
-  const result = await pool.query('SELECT * FROM alumns');
-  return result.rows;
+async function getAlumnById(alumnId) {
+  const query = {
+    text: 'SELECT * FROM alumns WHERE id = $1',
+    values: [alumnId],
+  };
+
+  const result = await pool.query(query);
+  return result.rows[0]; // Devuelve el primer resultado, ya que debería haber solo uno con el ID único
 }
+
 
 // Servicio para crear un nuevo alumno
 async function createAlumn(name, lastName, sex, phone) {
